@@ -1,0 +1,10 @@
+docker pull prom/prometheus
+docker run -p 9090:9090 -v /D:/Spring/Learning/workspace/spring-boot-micrometer-promethous/src/main/resources/prometheus.yml prom/prometheus
+
+
+docker run -d --name=grafana -p 3000:3000 grafana/grafana
+
+
+
+
+docker service create --replicas 1 --name my-prometheus --mount type=bind,source=/D:/Spring/Learning/workspace/spring-boot-micrometer-promethous/src/main/resources/prometheus.yml,destination=/etc/prometheus/prometheus.yml --publish published=9090,target=9090,protocol=tcp prom/prometheus
